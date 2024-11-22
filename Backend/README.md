@@ -134,8 +134,6 @@ The request body should be in JSON format and include the following fields:
 ### Example Response
 
 
-# Backend API Documentation
-
 ## `/captains/register` Endpoint
 
 ### Description
@@ -257,3 +255,44 @@ Requires a valid JWT token in the Authorization header or cookie.
 ### Example Response
 
 - `message` (string): Logout successfully.
+
+
+## `/maps/get-coordinates` Endpoint
+
+### Description
+
+Retrieves the coordinates (latitude and longitude) for a given address.
+
+### HTTP Method
+
+`GET`
+
+### Request Parameters
+
+- `address` (string, required): The address for which to retrieve coordinates.
+
+### Example Request
+
+
+GET `/maps/get-coordinates?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA`
+
+
+### Example Response
+
+```json
+{
+  "ltd": 37.4224764,
+  "lng": -122.0842499
+}
+```
+
+### Error Response
+
+- `400 Bad Request`: If the address parameter is missing or invalid.
+- `404 Not Found`: If the coordinates for the given address could not be found.
+
+```json
+{
+  "message": "Coordinates not found"
+}
+```
